@@ -13,7 +13,7 @@ Official pytorch implementation of “Mamba-YOLO：SSMs-based for Object Detecti
 conda create -n mambayolo -y python=3.11
 conda activate mambayolo
 pip3 install torch===2.3.0 torchvision torchaudio
-pip install seaborn thop timm einops
+pip install seaborn thop timm einops wandb
 cd selective_scan && pip install . && cd ..
 pip install -v -e .
 ```
@@ -21,9 +21,8 @@ pip install -v -e .
 ## Training
 
 ```shell
-python mbyolo_train.py --task train --data ultralytics/cfg/datasets/coco.yaml \
- --config ultralytics/cfg/models/v8/mamba-yolo.yaml \
---amp  --project ./output_dir/mscoco --name mambayolo_n
+python mbyolo_train.py --task train --data /home/dmovchan/repos/zorya/datasets/10_12_2024_polygon_finetune_nolast/data.yaml --config ultralytics/cfg/models/mamba-yolo/Mamba-YOLO-B.yaml --batch_size 48 --img 640 --device 0,1,2 --epochs 40 --optimizer AdamW --amp --project mamba-yolo --name mambayolo_b
+
 ```
 
 ## Acknowledgement
